@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNDTAG Style</title>
+    <style>
+        /* Основные стили страницы */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            /* Фоновое изображение ф.png */
+            background-image: url('ф.png');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Контейнер для картинки к.png */
+        #content {
+            display: none; /* Скрыт по умолчанию */
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        img {
+            max-width: 85vw;
+            max-height: 80vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+        }
+
+        /* Стили кнопки запуска */
+        #play-btn {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 50px;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        #play-btn:hover {
+            background-color: white;
+            color: black;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Кнопка, которую нужно нажать -->
+    <button id="play-btn" onclick="startExperience()">Воспроизвести</button>
+
+    <!-- Скрытый контент с картинкой к.png -->
+    <div id="content">
+        <img src="к.png" alt="Изображение">
+    </div>
+
+    <!-- Звуковой файл з.m4a -->
+    <audio id="audio" src="з.m4a" loop></audio>
+
+    <script>
+        function startExperience() {
+            const audio = document.getElementById('audio');
+            const btn = document.getElementById('play-btn');
+            const content = document.getElementById('content');
+
+            // Запускаем звук
+            audio.play().catch(err => console.log("Ошибка звука:", err));
+            
+            // Прячем кнопку и показываем картинку
+            btn.style.display = 'none';
+            content.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
